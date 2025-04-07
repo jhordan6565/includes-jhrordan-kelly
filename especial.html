@@ -53,6 +53,14 @@
       box-shadow: 0 0 10px pink;
       z-index: 2;
       position: relative;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+    }
+
+    .message.show {
+      opacity: 1;
+      transform: scale(1);
     }
 
     /* Corazones animados */
@@ -65,6 +73,7 @@
       top: 100%;
       animation: floatUp 10s linear infinite;
       opacity: 0.8;
+      z-index: 1;
     }
 
     .heart::before,
@@ -100,7 +109,7 @@
   </style>
 </head>
 <body>
-  <h1>Para ti, mi amor 💘</h1>
+  <h1>Para ti, con amor, mi amada Kelly, mi mujer preciosa 💘</h1>
   <div class="buttons-container">
     <button onclick="showMessage(0)">Ábreme 💌</button>
     <button onclick="showMessage(1)">Ábreme 💌</button>
@@ -120,7 +129,11 @@
     ];
 
     function showMessage(index) {
-      document.getElementById("messageBox").textContent = messages[index];
+      const box = document.getElementById("messageBox");
+      box.classList.remove("show"); // quitar animación anterior si hay
+      void box.offsetWidth; // reiniciar animación
+      box.textContent = messages[index];
+      box.classList.add("show");
     }
 
     // Generar corazones animados
@@ -135,6 +148,12 @@
         heart.remove();
       }, 10000);
     }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
+
 
     setInterval(createHeart, 300);
   </script>
