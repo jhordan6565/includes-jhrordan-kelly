@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Mi Amor 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #ffe4e1;
+      color: #d6336c;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 2rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    .buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    button {
+      background: #ffb6c1;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ff69b4;
+      color: white;
+    }
+
+    .message {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 15px;
+      box-shadow: 0 0 10px pink;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Corazones animados */
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      top: 100%;
+      animation: floatUp 10s linear infinite;
+      opacity: 0.8;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Para ti, mi amor 💘</h1>
+  <div class="buttons-container">
+    <button onclick="showMessage(0)">Ábreme 💌</button>
+    <button onclick="showMessage(1)">Ábreme 💌</button>
+    <button onclick="showMessage(2)">Ábreme 💌</button>
+    <button onclick="showMessage(3)">Ábreme 💌</button>
+    <button onclick="showMessage(4)">Ábreme 💌</button>
+  </div>
+  <div class="message" id="messageBox"></div>
+
+  <script>
+    const messages = [
+      "Eres la razón por la que sonrío todos los días 💖",
+      "Contigo todo es más bonito. Te amo 🌹",
+      "Gracias por existir, mi cielo 🌟",
+      "No hay palabras suficientes para decir cuánto te amo 💕",
+      "Cada segundo lejos de ti se siente eterno... te extraño con todo mi corazón. 💔✨"
+    ];
+
+    function showMessage(index) {
+      document.getElementById("messageBox").textContent = messages[index];
+    }
+
+    // Generar corazones animados
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
